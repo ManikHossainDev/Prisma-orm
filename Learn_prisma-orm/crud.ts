@@ -1,37 +1,46 @@
-import { prisma } from "./lib/prisma"
+import { Profile } from "./generated/prisma/client";
+import { prisma } from "./lib/prisma";
 
-// const run = async () => {
-//     const createUser = await prisma.user.create({
-//         data: {
-//             name: "manik Hossain",
-//             email: "manik@gmail.com",
-//         }
-//     })
-//     console.log('create', createUser);
-// }
-// run()
+const run = async () => {
+  // const createUser = await prisma.user.create({
+  //     data: {
+  //         name: "manik Hossain",
+  //         email: "manik@gmail.com",
+  //     }
+  // })
+  // console.log('create', createUser);
 
+  // const createPost = await prisma.post.create({
+  //   data: {
+  //     title: "manik Hossain",
+  //     content: "manikgmailcom",
+  //     authorId: 1,
+  //   },
+  // });
+  // console.log("create", createPost);
 
-// const post = async () => {
-//   const createPost = await prisma.post.create({
-//     data: {
-//       title: "manik Hossain",
-//       content: "manikgmailcom",
-//       authorId: 1
-//     },
-//   });
-//   console.log("create", createPost);
-// };
-// post();
+  // const createprofile = await prisma.profile.create({
+  //   data: {
+  //     bio: "web dev at ph",
+  //     userId: 1,
+  //   },
+  // });
+  // console.log("create", createprofile);
 
-
-const profile = async () => {
-  const createprofile = await prisma.profile.create({
-    data: {
-      bio: "web dev at ph",
-      userId: 1
-    },
+  const users = await prisma.user.findMany({
+    // include: {
+    //   posts: true,
+    //   profiles: true,
+    // },
+    select: {
+        id:true,
+        email:true,
+        name:true,
+        posts:true,
+        profiles:true,
+    }
   });
-  console.log("create", createprofile);
+  // console.log(users)
+  console.dir(users, { depth: Infinity });
 };
-profile();
+run();
