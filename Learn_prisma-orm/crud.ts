@@ -4,8 +4,8 @@ import { prisma } from "./lib/prisma";
 const run = async () => {
   // const createUser = await prisma.user.create({
   //     data: {
-  //         name: "manik Hossain",
-  //         email: "manik@gmail.com",
+  //         name: "manik islam",
+  //         email: "manikss@gmail.com",
   //     }
   // })
   // console.log('create', createUser);
@@ -27,20 +27,56 @@ const run = async () => {
   // });
   // console.log("create", createprofile);
 
-  const users = await prisma.user.findMany({
-    // include: {
-    //   posts: true,
-    //   profiles: true,
-    // },
-    select: {
-        id:true,
-        email:true,
-        name:true,
-        posts:true,
-        profiles:true,
+  // const users = await prisma.user.findMany({
+  //   // include: {
+  //   //   posts: true,
+  //   //   profiles: true,
+  //   // },
+  //   select: {
+  //       id:true,
+  //       email:true,
+  //       name:true,
+  //       posts:true,
+  //       profiles:true,
+  //   }
+  // });
+  // // console.log(users)
+  // console.dir(users, { depth: Infinity });
+
+
+
+  // update user data 
+  //  const updateUser = await prisma.profile.update({
+  //    where: { userId: 1 },
+  //    data: {
+  //      bio: "web developer and mentor",
+  //    },
+  //    select: {
+  //      id: true,
+  //      bio: true,
+  //    },
+  //  });
+  //  console.log(updateUser); 
+
+
+  // delete users 
+  const deleteUser = await prisma.user.delete({
+    where: {
+      id:2
     }
-  });
-  // console.log(users)
-  console.dir(users, { depth: Infinity });
+  })
+  console.log(deleteUser);
+
+  // getuser data 
+  // const getUserDataById = await prisma.user.findUnique({
+  //   where:{
+  //     id:2
+  //   },
+  //   include: {
+  //     posts:true,
+  //     profiles:true
+  //   }
+  // })
+  // console.log(getUserDataById)
 };
 run();
